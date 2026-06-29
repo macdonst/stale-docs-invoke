@@ -1,0 +1,10 @@
+node_modules
+.env
+
+# Sanity Functions
+.sanity/
+.build/
+functions/**/.env*
+functions/**/.build/
+functions/**/node_modules/
+
