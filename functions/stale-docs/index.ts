@@ -1,6 +1,5 @@
-import { scheduledEventHandler } from '@sanity/functions'
+import { invoke, scheduledEventHandler } from '@sanity/functions'
 import { createClient } from '@sanity/client'
-import { WebClient } from '@slack/web-api'
 import { env } from 'node:process'
 
 interface Finding {
@@ -22,8 +21,6 @@ export const handler = scheduledEventHandler(async ({ context }) => {
     DATASET,
     DAYS_SINCE = 180,
     PROJECT_ID,
-    SLACK_CHANNEL,
-    SLACK_OAUTH_TOKEN,
   } = env
 
   // Create sanity client
@@ -56,22 +53,7 @@ export const handler = scheduledEventHandler(async ({ context }) => {
       format: 'json',
     })
 
-    // Create slack client
-    const slack = new WebClient(SLACK_OAUTH_TOKEN)
-
-    // Prepare message content
-    const message = `*Update these movie overviews*\n\n${analysis.findings.map(finding => `*${finding.title}*\n\n${finding.issue}\nPriority: ${finding.priority}`).join('\n\n')}`
-
-    // Send message to Slack
-    await slack.chat.postMessage({
-      channel: SLACK_CHANNEL,
-      text: message,
-    })
-
-    console.log(
-      'Slack notification sent successfully to channel:',
-      SLACK_CHANNEL,
-    )
+    await invoke('post-to-slack', { context, event: { data: { analysis } } })
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : error
     console.error('Error occurred:', errMsg)

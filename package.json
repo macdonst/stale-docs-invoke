@@ -1,13 +1,13 @@
 {
   "type": "module",
   "devDependencies": {
-    "@sanity/blueprints": "0.15.0",
+    "@sanity/blueprints": "0.21.0",
     "@types/node": "^25.6.0",
     "dotenv": "^17.4.1"
   },
   "dependencies": {
-    "@sanity/client": "^7.20.0",
-    "@sanity/functions": "1.2.1",
-    "@slack/web-api": "^7.15.0"
+    "@sanity/client": "^7.23.0",
+    "@sanity/functions": "^1.4.0",
+    "@slack/web-api": "^7.17.0"
   }
 }

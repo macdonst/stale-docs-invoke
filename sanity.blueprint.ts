@@ -1,4 +1,4 @@
-import { defineBlueprint, defineRobotToken, defineScheduledFunction } from '@sanity/blueprints'
+import { defineBlueprint, defineDocumentFunction, defineEventFunction, defineRobotToken, defineScheduledFunction } from '@sanity/blueprints'
 import 'dotenv/config'
 import { env } from 'node:process'
 
@@ -19,18 +19,24 @@ export default defineBlueprint({
     }),
     defineScheduledFunction({
       name: 'stale-docs',
-      event: { expression: '0 8 * * 1' },
-      timezone: 'America/Montreal',
+      event: { expression: '13 15 * * *' },
+      timezone: 'America/New_York',
       env: {
         API_HOST,
         DAYS_SINCE: '180',
-        SLACK_OAUTH_TOKEN,
-        SLACK_CHANNEL,
         PROJECT_ID,
         DATASET
       },
       robotToken: '$.resources.stale-docs-robot.token',
       timeout: 30,
+    }),
+    defineEventFunction({
+      name: 'post-to-slack',
+      project: 'ghn6qugi',
+      env: {
+        SLACK_OAUTH_TOKEN,
+        SLACK_CHANNEL,
+      }
     }),
   ],
 })
