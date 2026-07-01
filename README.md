@@ -1,6 +1,6 @@
 # stale-docs-invoke
 
-This is an example Blueprint that contains a scheduled function that runs every Monday morning at 8am. It queries the project/dataset you provide looking for out of date movie overviews. Then it sends these overviews to the Sanity Content Agent for commentary. Finally, it posts the results to a Slack channel.
+This is an example Blueprint that contains a scheduled function that runs every Monday morning at 8am. It queries the project/dataset you provide looking for out of date movie overviews. Then it sends these overviews to the Sanity Content Agent for commentary. Finally, it posts the results to a Slack channel by invoking a separate function.
 
 This is a POC and when adopting it to a real Sanity recipe we'll change it from movie reviews.
 
