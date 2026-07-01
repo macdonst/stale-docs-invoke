@@ -53,7 +53,10 @@ export const handler = scheduledEventHandler(async ({ context }) => {
       format: 'json',
     })
 
-    await invoke('post-to-slack', { context, event: { data: { analysis } } })
+    // Prepare message content
+    const message = `*Update these movie overviews*\n\n${analysis.findings.map(finding => `*${finding.title}*\n\n${finding.issue}\nPriority: ${finding.priority}`).join('\n\n')}`
+
+    await invoke('slack-post', { context, event: { data: { message } } })
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : error
     console.error('Error occurred:', errMsg)

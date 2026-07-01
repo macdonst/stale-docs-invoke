@@ -1,4 +1,4 @@
-# stale-docs
+# stale-docs-invoke
 
 This is an example Blueprint that contains a scheduled function that runs every Monday morning at 8am. It queries the project/dataset you provide looking for out of date movie overviews. Then it sends these overviews to the Sanity Content Agent for commentary. Finally, it posts the results to a Slack channel.
 

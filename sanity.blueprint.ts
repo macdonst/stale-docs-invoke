@@ -31,8 +31,7 @@ export default defineBlueprint({
       timeout: 30,
     }),
     defineEventFunction({
-      name: 'post-to-slack',
-      project: 'ghn6qugi',
+      name: 'slack-post',
       env: {
         SLACK_OAUTH_TOKEN,
         SLACK_CHANNEL,
