@@ -19,7 +19,7 @@ export default defineBlueprint({
     }),
     defineScheduledFunction({
       name: 'stale-docs',
-      event: { expression: '13 15 * * *' },
+      event: { expression: '0 8 * * 1' },
       timezone: 'America/New_York',
       env: {
         API_HOST,
